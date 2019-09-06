@@ -35,7 +35,7 @@ namespace Lab1
                 MessageBox.Show("All the values should be positive!");
             }
         }
-
+        
         private bool IsValid(string text)
         {
             bool result = true;
