@@ -16,6 +16,9 @@ namespace Lab1
         const int N = 100000;
         const int k = 20; // count of intervals
         const double xMin = 0;
+        const double xMax = 1;
+        const double yMin = 0;
+        const double yMax = 0.1;
         const double delta = 1 / (double)k;
         public Form1()
         {
@@ -75,13 +78,14 @@ namespace Lab1
                 xList.Add(x);
             }
 
-            double Mx, Dx, GAMMAx;
+            double Mx, Dx, GAMMAx, indirectSignValue;
             int[] countInIntervals = new int[k];
 
             DoEstimationsCalculations(xList, out Mx, out Dx, out GAMMAx);
-            PrintEstimations(Mx, Dx, GAMMAx);
             DoDiagramCalculations(xList, countInIntervals);
             DrawDiagram(countInIntervals);
+            CalculateIndirectSign(out indirectSignValue, xList);
+            PrintEstimations(Mx, Dx, GAMMAx, indirectSignValue);
         }
 
         private void DoEstimationsCalculations(List<double> xList, out double Mx, out double Dx, out double GAMMAx)
@@ -104,11 +108,12 @@ namespace Lab1
             GAMMAx = Math.Sqrt(Dx);
         }
 
-        private void PrintEstimations(double Mx, double Dx, double GAMMAx)
+        private void PrintEstimations(double Mx, double Dx, double GAMMAx, double indirectSignValue)
         {
             MxLabel.Text = Math.Round(Mx, 4).ToString();
             DxLabel.Text = Math.Round(Dx, 4).ToString();
             GAMMAxLabel.Text = Math.Round(GAMMAx, 4).ToString();
+            indirectSignCheckLabel.Text = Math.Round(indirectSignValue, 4).ToString();
         }
 
         private void DoDiagramCalculations(List<double> xList, int[] countInIntervals)
@@ -126,10 +131,10 @@ namespace Lab1
         {
             chart1.Series["Ci"].Points.Clear();
 
-            chart1.ChartAreas[0].AxisY.Maximum = 0.1;
-            chart1.ChartAreas[0].AxisY.Minimum = 0;
-            chart1.ChartAreas[0].AxisX.Maximum = 1;
-            chart1.ChartAreas[0].AxisX.Minimum = 0;
+            chart1.ChartAreas[0].AxisY.Maximum = yMax;
+            chart1.ChartAreas[0].AxisY.Minimum = yMin;
+            chart1.ChartAreas[0].AxisX.Maximum = xMax;
+            chart1.ChartAreas[0].AxisX.Minimum = yMin;
 
             for (int i = 0; i < countInIntervals.Length; i++)
             {
@@ -142,6 +147,21 @@ namespace Lab1
             stripline.IntervalOffset = 1 / (double)k;
 
             chart1.ChartAreas[0].AxisY.StripLines.Add(stripline);
+        }
+
+        private void CalculateIndirectSign(out double indirectSignValue, List<double> xList)
+        {
+            int k = 0;
+
+            for(int i = 0; i < xList.Count; i += 2)
+            {
+                if(xList[i] * xList[i] + xList[i + 1] * xList[i + 1] < 1)
+                {
+                    k++;
+                }
+            }
+
+            indirectSignValue = 2 * (double)k / N;
         }
     }
 }
