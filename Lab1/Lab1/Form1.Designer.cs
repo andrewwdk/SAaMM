@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.calculateButton = new System.Windows.Forms.Button();
             this.aTextBox = new System.Windows.Forms.TextBox();
@@ -49,21 +49,26 @@
             this.pLabel = new System.Windows.Forms.Label();
             this.GAMMAxLabel = new System.Windows.Forms.Label();
             this.DxLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.indirectSignCheckLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(83, 84);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(73, 87);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            series1.CustomProperties = "PointWidth=1";
+            series1.Legend = "Legend1";
+            series1.Name = "Ci";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(889, 634);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -147,7 +152,7 @@
             this.MxLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.MxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MxLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MxLabel.Location = new System.Drawing.Point(1288, 234);
+            this.MxLabel.Location = new System.Drawing.Point(1260, 175);
             this.MxLabel.Name = "MxLabel";
             this.MxLabel.Size = new System.Drawing.Size(29, 31);
             this.MxLabel.TabIndex = 8;
@@ -159,7 +164,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(1093, 515);
+            this.label5.Location = new System.Drawing.Point(1065, 456);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 31);
             this.label5.TabIndex = 9;
@@ -171,7 +176,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(1093, 445);
+            this.label6.Location = new System.Drawing.Point(1065, 386);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 31);
             this.label6.TabIndex = 10;
@@ -183,7 +188,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(1093, 376);
+            this.label7.Location = new System.Drawing.Point(1065, 317);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 31);
             this.label7.TabIndex = 11;
@@ -195,7 +200,7 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(1093, 303);
+            this.label8.Location = new System.Drawing.Point(1065, 244);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 31);
             this.label8.TabIndex = 12;
@@ -207,7 +212,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label9.Location = new System.Drawing.Point(1093, 234);
+            this.label9.Location = new System.Drawing.Point(1065, 175);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 31);
             this.label9.TabIndex = 13;
@@ -219,7 +224,7 @@
             this.LaLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.LaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LaLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.LaLabel.Location = new System.Drawing.Point(1288, 515);
+            this.LaLabel.Location = new System.Drawing.Point(1260, 456);
             this.LaLabel.Name = "LaLabel";
             this.LaLabel.Size = new System.Drawing.Size(29, 31);
             this.LaLabel.TabIndex = 14;
@@ -231,7 +236,7 @@
             this.pLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pLabel.Location = new System.Drawing.Point(1288, 445);
+            this.pLabel.Location = new System.Drawing.Point(1260, 386);
             this.pLabel.Name = "pLabel";
             this.pLabel.Size = new System.Drawing.Size(29, 31);
             this.pLabel.TabIndex = 15;
@@ -243,7 +248,7 @@
             this.GAMMAxLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.GAMMAxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.GAMMAxLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.GAMMAxLabel.Location = new System.Drawing.Point(1288, 376);
+            this.GAMMAxLabel.Location = new System.Drawing.Point(1260, 317);
             this.GAMMAxLabel.Name = "GAMMAxLabel";
             this.GAMMAxLabel.Size = new System.Drawing.Size(29, 31);
             this.GAMMAxLabel.TabIndex = 16;
@@ -255,11 +260,35 @@
             this.DxLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.DxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DxLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DxLabel.Location = new System.Drawing.Point(1288, 303);
+            this.DxLabel.Location = new System.Drawing.Point(1260, 244);
             this.DxLabel.Name = "DxLabel";
             this.DxLabel.Size = new System.Drawing.Size(29, 31);
             this.DxLabel.TabIndex = 17;
             this.DxLabel.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label4.Location = new System.Drawing.Point(1065, 596);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(240, 31);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Indirect sign check";
+            // 
+            // indirectSignCheckLabel
+            // 
+            this.indirectSignCheckLabel.AutoSize = true;
+            this.indirectSignCheckLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.indirectSignCheckLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.indirectSignCheckLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.indirectSignCheckLabel.Location = new System.Drawing.Point(1148, 646);
+            this.indirectSignCheckLabel.Name = "indirectSignCheckLabel";
+            this.indirectSignCheckLabel.Size = new System.Drawing.Size(29, 31);
+            this.indirectSignCheckLabel.TabIndex = 19;
+            this.indirectSignCheckLabel.Text = "0";
             // 
             // Form1
             // 
@@ -267,6 +296,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1394, 765);
+            this.Controls.Add(this.indirectSignCheckLabel);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.DxLabel);
             this.Controls.Add(this.GAMMAxLabel);
             this.Controls.Add(this.pLabel);
@@ -313,6 +344,8 @@
         private System.Windows.Forms.Label pLabel;
         private System.Windows.Forms.Label GAMMAxLabel;
         private System.Windows.Forms.Label DxLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label indirectSignCheckLabel;
     }
 }
 
