@@ -77,12 +77,14 @@ namespace Lab1
             double Mx, Dx, GAMMAx, indirectSignValue;
             int[] countInIntervals = new int[k];
             double xMin, xMax, yMax;
+            int p, La;
 
             DoEstimationsCalculations(xList, out Mx, out Dx, out GAMMAx);
             DoDiagramCalculations(xList, countInIntervals, out xMin, out xMax, out yMax);
             DrawDiagram(countInIntervals, xMin, xMax, yMax);
             CalculateIndirectSign(out indirectSignValue, xList);
-            PrintEstimations(Mx, Dx, GAMMAx, indirectSignValue);
+            CalculatePeriodAndLa(xList, out p, out La);
+            PrintEstimations(Mx, Dx, GAMMAx, indirectSignValue, p, La);
         }
 
         private void DoEstimationsCalculations(List<double> xList, out double Mx, out double Dx, out double GAMMAx)
@@ -105,12 +107,14 @@ namespace Lab1
             GAMMAx = Math.Sqrt(Dx);
         }
 
-        private void PrintEstimations(double Mx, double Dx, double GAMMAx, double indirectSignValue)
+        private void PrintEstimations(double Mx, double Dx, double GAMMAx, double indirectSignValue, int p, int La)
         {
             MxLabel.Text = Math.Round(Mx, 4).ToString();
             DxLabel.Text = Math.Round(Dx, 4).ToString();
             GAMMAxLabel.Text = Math.Round(GAMMAx, 4).ToString();
             indirectSignCheckLabel.Text = Math.Round(indirectSignValue, 4).ToString();
+            pLabel.Text = p.ToString();
+            LaLabel.Text = La.ToString();
         }
 
         private void DoDiagramCalculations(List<double> xList, int[] countInIntervals, out double xMin, out double xMax, out double yMax)
@@ -216,6 +220,48 @@ namespace Lab1
             }
 
             indirectSignValue = 2 * (double)k / N;
+        }
+
+        private void CalculatePeriodAndLa(List<double> xList, out int p, out int La)
+        {
+            double checkingValue = xList[N - 1];
+            int foundIndex = 0;
+
+            for(int i = N - 2; i >= 0; i--)
+            {
+                if(xList[i] == checkingValue)
+                {
+                    foundIndex = i + 1;
+                    break;
+                }
+            }
+
+            p = N - foundIndex;
+            La = p;
+
+            if (p != N)
+            {
+                bool repeated = false;
+
+                for(int i=0; i < xList.Count; i++)
+                {
+                    for (int j = i + 1; j < xList.Count; j++)
+                    {
+                        if (xList[i] == xList[j])
+                        {
+                            repeated = true;
+                            break;
+                        } 
+                    }
+
+                    if (repeated)
+                    {
+                        break;
+                    }
+
+                    La++;
+                }
+            }
         }
     }
 }
