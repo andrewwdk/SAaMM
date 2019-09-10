@@ -15,11 +15,7 @@ namespace Lab1
     {
         const int N = 100000;
         const int k = 20; // count of intervals
-        const double xMin = 0;
-        const double xMax = 1;
         const double yMin = 0;
-        const double yMax = 0.1;
-        const double delta = 1 / (double)k;
         public Form1()
         {
             InitializeComponent();
@@ -29,9 +25,9 @@ namespace Lab1
         {
             if(IsValid(mTextBox.Text) && IsValid(aTextBox.Text) && IsValid(R0TextBox.Text))
             {
-                double m = Convert.ToDouble(mTextBox.Text);
-                double a = Convert.ToDouble(aTextBox.Text);
-                double R0 = Convert.ToDouble(R0TextBox.Text);
+                int m = Convert.ToInt32(mTextBox.Text);
+                int a = Convert.ToInt32(aTextBox.Text);
+                int R0 = Convert.ToInt32(R0TextBox.Text);
 
                 if(m > a)
                 {
@@ -44,16 +40,16 @@ namespace Lab1
             }
             else
             {
-                MessageBox.Show("All the values should be positive!");
+                MessageBox.Show("All the values should be positive integers!");
             }
         }
         
         private bool IsValid(string text)
         {
             bool result = true;
-            double number;
+            int number;
 
-            if (double.TryParse(text, out number))
+            if (int.TryParse(text, out number))
             {
                 if(number <= 0)
                 {
@@ -80,10 +76,11 @@ namespace Lab1
 
             double Mx, Dx, GAMMAx, indirectSignValue;
             int[] countInIntervals = new int[k];
+            double xMin, xMax, yMax;
 
             DoEstimationsCalculations(xList, out Mx, out Dx, out GAMMAx);
-            DoDiagramCalculations(xList, countInIntervals);
-            DrawDiagram(countInIntervals);
+            DoDiagramCalculations(xList, countInIntervals, out xMin, out xMax, out yMax);
+            DrawDiagram(countInIntervals, xMin, xMax, yMax);
             CalculateIndirectSign(out indirectSignValue, xList);
             PrintEstimations(Mx, Dx, GAMMAx, indirectSignValue);
         }
@@ -116,37 +113,94 @@ namespace Lab1
             indirectSignCheckLabel.Text = Math.Round(indirectSignValue, 4).ToString();
         }
 
-        private void DoDiagramCalculations(List<double> xList, int[] countInIntervals)
+        private void DoDiagramCalculations(List<double> xList, int[] countInIntervals, out double xMin, out double xMax, out double yMax)
         {
             int intervalNumber;
 
+            FindXMaxMin(xList, out xMin, out xMax);
+
+            if(xMax == xMin)
+            {
+                //countInIntervals[0] = N;
+                yMax = 1;
+                return;
+            }
+
             foreach(double x in xList)
             {
-                intervalNumber = (int)Math.Truncate(x / delta);
+                intervalNumber = (int)Math.Truncate((x - xMin - 0.000000001) / ((xMax - xMin) / k)); // (x - xMin - 0.000000001) because Ox starts with xMin
                 countInIntervals[intervalNumber]++;
+            }
+
+            yMax = FindYMax(countInIntervals);
+        }
+
+        private void FindXMaxMin(List<double> xList, out double xMin, out double xMax)
+        {
+            xMin = double.MaxValue;
+            xMax = double.MinValue;
+
+            foreach(double x in xList)
+            {
+                if(x < xMin)
+                {
+                    xMin = x;
+                }
+
+                if(x > xMax)
+                {
+                    xMax = x;
+                }
             }
         }
 
-        private void DrawDiagram(int[] countInIntervals)
+        private double FindYMax(int[] countInintervals)
+        {
+            int maxCount = int.MinValue;
+
+            foreach(int count in countInintervals)
+            {
+                if(count > maxCount)
+                {
+                    maxCount = count;
+                }
+            }
+
+            return Math.Round((double)maxCount / N, 2);
+        }
+
+        private void DrawDiagram(int[] countInIntervals, double xMin, double xMax, double yMax)
         {
             chart1.Series["Ci"].Points.Clear();
 
-            chart1.ChartAreas[0].AxisY.Maximum = yMax;
+            chart1.ChartAreas[0].AxisY.Maximum = yMax + 0.1 * yMax; // increase Oy by 10%
             chart1.ChartAreas[0].AxisY.Minimum = yMin;
-            chart1.ChartAreas[0].AxisX.Maximum = xMax;
-            chart1.ChartAreas[0].AxisX.Minimum = yMin;
 
-            for (int i = 0; i < countInIntervals.Length; i++)
+            if(xMax != xMin)
             {
-                chart1.Series["Ci"].Points.AddXY(i*delta + delta / 2, countInIntervals[i] / (double)N);
+                chart1.ChartAreas[0].AxisX.Maximum = xMax;
+                chart1.ChartAreas[0].AxisX.Minimum = xMin;
+
+                double delta = (xMax - xMin) / k;
+
+                for (int i = 0; i < countInIntervals.Length; i++)
+                {
+                    chart1.Series["Ci"].Points.AddXY(xMin + i * delta + delta / 2, countInIntervals[i] / (double)N);
+                }
+
+                StripLine stripline = new StripLine();
+                stripline.StripWidth = 0.00001;
+                stripline.BackColor = Color.Red;
+                stripline.IntervalOffset = 1 / (double)k;
+
+                chart1.ChartAreas[0].AxisY.StripLines.Add(stripline);
             }
-
-            StripLine stripline = new StripLine();
-            stripline.StripWidth = 0.00001;
-            stripline.BackColor = Color.Red;
-            stripline.IntervalOffset = 1 / (double)k;
-
-            chart1.ChartAreas[0].AxisY.StripLines.Add(stripline);
+            else
+            {
+                //chart1.ChartAreas[0].AxisX.Maximum = xMin + 0.5 * xMin;
+                //chart1.ChartAreas[0].AxisX.Minimum = xMin - 0.5 * xMin;
+                MessageBox.Show("One value repeats.");
+            }
         }
 
         private void CalculateIndirectSign(out double indirectSignValue, List<double> xList)
