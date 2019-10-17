@@ -20,16 +20,16 @@ namespace Lab3
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (IsValid(mTextBox.Text) && IsValid(aTextBox.Text) && IsValid(R0TextBox.Text) && IsValidDouble(pi1TextBox.Text) && IsValidDouble(pi2TextBox.Text))
+            if (IsValidDouble(pi1TextBox.Text) && IsValidDouble(pi2TextBox.Text))
             {
                 double pi1 = Convert.ToDouble(pi1TextBox.Text);
                 double pi2 = Convert.ToDouble(pi2TextBox.Text);
 
                 if (pi1 <= 1 || pi2 <= 1)
                 {
-                    int m = Convert.ToInt32(mTextBox.Text);
-                    int a = Convert.ToInt32(aTextBox.Text);
-                    int R0 = Convert.ToInt32(R0TextBox.Text);
+                    int m = 61121;
+                    int a = 211;
+                    int R0 = 319;
 
                     if (m > a)
                     {
@@ -51,26 +51,6 @@ namespace Lab3
             }
         }
 
-        private bool IsValid(string text)
-        {
-            bool result = true;
-            int number;
-
-            if (int.TryParse(text, out number))
-            {
-                if (number <= 0)
-                {
-                    result = false;
-                }
-            }
-            else
-            {
-                result = false;
-            }
-
-            return result;
-        }
-
         private bool IsValidDouble(string text)
         {
             bool result = true;
@@ -78,7 +58,7 @@ namespace Lab3
 
             if (double.TryParse(text, out number))
             {
-                if (number <= 0)
+                if (number < 0)
                 {
                     result = false;
                 }
